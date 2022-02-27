@@ -1,5 +1,9 @@
 package ru.vdv.myendlesslist.domain
 
+/**
+ * Класс данных (ПОСТ)
+ * В базовом ответе более 100 полей, в данной работе приняты только некоторые (которые нужны)
+ */
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index

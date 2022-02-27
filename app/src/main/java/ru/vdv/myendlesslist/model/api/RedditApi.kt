@@ -10,7 +10,10 @@ interface RedditApi {
     @GET("/r/{subreddit}/hot.json")
     fun getTop(
         @Path("subreddit") subreddit: String,
-        @Query("limit") limit: Int): Call<ListingResponse>
+        @Query("limit") limit: Int,
+        @Query("after") after: String? = null,
+        @Query("before") before: String? = null): Call<ListingResponse>
+
 
     @GET("/r/{subreddit}/hot.json")
     fun getTopAfter(
