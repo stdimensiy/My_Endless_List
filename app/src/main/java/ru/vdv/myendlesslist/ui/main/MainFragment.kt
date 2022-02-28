@@ -3,12 +3,14 @@ package ru.vdv.myendlesslist.ui.main
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.vdv.myendlesslist.databinding.MainFragmentBinding
+import ru.vdv.myendlesslist.domain.OnLoadMoreData
 import ru.vdv.myendlesslist.ui.common.BaseFragment
 
 class MainFragment : BaseFragment<MainFragmentBinding>() {
@@ -31,9 +33,14 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         if (savedInstanceState == null) viewModel.fetchListRedditPost()
 
-        val movieList = binding.rvMain
-        movieList.adapter = adapter
-        movieList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        val mainList = binding.rvMain
+        adapter.setOnLoadMoreDataListener(object : OnLoadMoreData{
+            override fun onLoadMore() {
+                Log.d(TAG, "Хочу новую порцию данных")
+            }
+        })
+        mainList.adapter = adapter
+        mainList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         viewModel.postList.observe(viewLifecycleOwner) {
             adapter.items = it

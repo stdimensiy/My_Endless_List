@@ -15,7 +15,7 @@ class MainViewModel : BaseViewModel() {
     val postList: LiveData<List<RedditChildrenResponse>> = mPostList
 
     fun fetchListRedditPost(standardList: String = "", page: Int = 0) {
-        val subreddit = "aww"
+        val subreddit = "androiddev"
         val limit = 90
         val after:  String? = null
         val  before: String? = null
