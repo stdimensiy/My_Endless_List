@@ -9,18 +9,21 @@ import ru.vdv.myendlesslist.domain.RedditPost
 import ru.vdv.myendlesslist.ui.common.BaseViewModel
 
 class MainViewModel : BaseViewModel() {
+    private var currentAfterPostName: String? = null
     private val mPostList = MutableLiveData<List<RedditChildrenResponse>>().apply {
         value = listOf()
     }
     val postList: LiveData<List<RedditChildrenResponse>> = mPostList
 
-    fun fetchListRedditPost(standardList: String = "", page: Int = 0) {
-        val subreddit = "androiddev"
-        val limit = 90
-        val after:  String? = null
-        val  before: String? = null
-        repository.getTopList(subreddit, limit, after, before, object: CallBack<ListingData> {
+    fun fetchListRedditPost(
+        subreddit: String = "androiddev",
+        after: String? = null,
+        before: String? = null,
+        limit: Int = 90
+    ) {
+        repository.getTopList(subreddit, limit, after, before, object : CallBack<ListingData> {
             override fun onResult(value: ListingData) {
+                currentAfterPostName = value.after
                 mPostList.value = value.children
             }
         })

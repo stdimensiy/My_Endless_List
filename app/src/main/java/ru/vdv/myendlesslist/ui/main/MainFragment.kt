@@ -35,8 +35,9 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
 
         val mainList = binding.rvMain
         adapter.setOnLoadMoreDataListener(object : OnLoadMoreData{
-            override fun onLoadMore() {
-                Log.d(TAG, "Хочу новую порцию данных")
+            override fun onLoadMore(name: String){
+                Log.d(TAG, "Хочу новую порцию данных после :$name")
+                viewModel.fetchListRedditPost("androiddev",name,null,90)
             }
         })
         mainList.adapter = adapter

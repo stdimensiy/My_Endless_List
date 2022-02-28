@@ -23,7 +23,7 @@ class MainAdapter : RecyclerView.Adapter<MainViewHolder>() {
         holder.commentCount.text  = item.data.num_comments.toString()
 
         if (items.isNotEmpty() && position == items.size - 1) {
-            onLoadMoreDataListener!!.onLoadMore()
+            onLoadMoreDataListener!!.onLoadMore(items.last().data.name)
         }
     }
 
