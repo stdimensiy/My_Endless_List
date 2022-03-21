@@ -1,9 +1,10 @@
-package ru.vdv.myendlesslist
+package ru.vdv.myendlesslist.ui.main
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import ru.vdv.myendlesslist.R
 
 class MainViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     var title: TextView = itemView.findViewById(R.id.tv_item_title)
